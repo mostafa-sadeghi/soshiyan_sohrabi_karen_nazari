@@ -31,9 +31,13 @@
 #     print('sum is greater than 10')
 
 
-x = input('enter a number: ')
+# x = input('enter a number: ')
 
-if x == '2' or x == '4':
-    print('ok')
-else:
-    print('not ok')
+# if x == '2' or x == '4':
+#     print('ok')
+# else:
+#     print('not ok')
+
+
+# exercise1 : دو تا عدد از ورودی بگیر و در هم ضرب کن. اگر حاصلضرب مساوی 4 یا 9 یا 15 یا 25 شد. آنگاه اوکی را چاپ کن
+# exercise 2: دو عدد را گرفته در هم ضرب کن اگر حاصلضرب کمتر از 20 بود پیغام مناسبی ر ا چاپ کن در غیر اینصورت هم پیغام دیگری را نمایش بده.

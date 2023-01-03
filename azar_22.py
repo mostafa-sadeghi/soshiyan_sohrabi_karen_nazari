@@ -47,17 +47,17 @@
 
 # exercise 2: مجموع اعداد زوج بین دو هزار تا 3ه هزار را حساب نمایید
 
-x = 0
+# x = 0
 
-for i in range(2000, 3001, 2):
-    x = x + i
-print(x)
+# for i in range(2000, 3001, 2):
+#     x = x + i
+# print(x)
 
-numbers = []
-for i in range(2000, 3001):
-    if i % 2 == 0:
-        numbers.append(i)
+# numbers = []
+# for i in range(2000, 3001):
+#     if i % 2 == 0:
+#         numbers.append(i)
 
-print(sum(numbers))
-x = [1, 2, 3]
-print(sum(x))
+# print(sum(numbers))
+# x = [1, 2, 3]
+# print(sum(x))

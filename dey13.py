@@ -1,4 +1,5 @@
 import turtle
+import time
 
 s = turtle.Screen()
 s.title("My app")
@@ -15,9 +16,9 @@ p = turtle.Pen()
 p.shape('turtle')
 p.shapesize(3, 3, 3)
 
-p.penup()
-p.goto(100, 100)
-p.pendown()
+# p.penup()
+# p.goto(100, 100)
+# p.pendown()
 p.pensize(4)
 p.pencolor('red')
 # for i in range(4):
@@ -58,15 +59,18 @@ p.pencolor('red')
 # کشیدن ستاره
 p.penup()
 p.setpos(-90, 30)
+
 p.pendown()
 for i in range(5):
     p.forward(200)
     p.right(144)
+    # time.sleep(10)
+
 
 p.penup()
 p.setpos(80, -140)
-p.pendown()
-p.write("hello")
+
+p.write("سلام", font=85)
 p.hideturtle()
 
 

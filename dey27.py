@@ -1,0 +1,31 @@
+import turtle
+
+s = turtle.Screen()
+s.bgcolor('black')
+
+p = turtle.Pen()
+p.shape('turtle')
+p.pencolor('red')
+p.pensize(7)
+p.penup()
+p.setpos(0, 0)
+p.speed("fast")
+for i in range(12):
+    p.setheading(i * -30 + 60)
+    p.forward(150)
+    p.pendown()
+    p.forward(25)
+    p.penup()
+    p.forward(20)
+    p.write(i+1, font=12)
+    p.home()
+
+p.pencolor('orange')
+p.goto(0, -205)
+p.pendown()
+p.circle(215)
+p.penup()
+p.goto(-20, 0)
+p.write("Clock", font=32)
+p.ht()
+s.exitonclick()

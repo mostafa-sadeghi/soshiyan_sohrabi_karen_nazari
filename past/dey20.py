@@ -22,17 +22,17 @@
 # number = int(input("how many numbers? "))
 # for i in range(number):
 #     print(' '*i + '* '*(number-i))
-number = 7
-for i in range(7):
-    if i > 7/2:
-        print('* ' * (number-i))
-    else:
-        print('* ' * (i+1))
+# number = 7
+# for i in range(7):
+#     if i > 7/2:
+#         print('* ' * (number-i))
+#     else:
+#         print('* ' * (i+1))
 
 
-number = int(input('How many starts do you want? '))
-for i in range(number):
-    if i > number/2:
-        print('* ' * (number-i))
-    else:
-        print('* ' * (i+1))
+# number = int(input('How many starts do you want? '))
+# for i in range(number):
+#     if i > number/2:
+#         print('* ' * (number-i))
+#     else:
+#         print('* ' * (i+1))

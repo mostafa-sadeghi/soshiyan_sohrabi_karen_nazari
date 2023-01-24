@@ -1,8 +1,6 @@
 import turtle
-
 s = turtle.Screen()
 s.bgcolor('black')
-
 p = turtle.Pen()
 p.shape('turtle')
 p.pencolor('red')
@@ -19,7 +17,6 @@ for i in range(12):
     p.forward(20)
     p.write(i+1, font=12)
     p.home()
-
 p.pencolor('orange')
 p.goto(0, -205)
 p.pendown()

@@ -52,3 +52,29 @@
 # کرایه دربست برای هر دستگاه ون 200 تومان است
 # هر ون 10 نفر ظرفیت دارد
 # اگر یک ون پر نشود باز هم کرایه دربست باید پرداخت شود
+
+# PAZIRAEE_COST = 25
+# VOROUDI_COST = 20
+# DARBAST = 200
+# VAN_CAPACITY = 10
+
+
+# def calc_van_number(student_count):
+#     van_numbers = 0
+
+#     van_numbers = student_count // VAN_CAPACITY
+#     if student_count % VAN_CAPACITY != 0:
+#         van_numbers += 1  # van_numbers = van_numbers + 1
+
+#     return van_numbers
+
+
+# def cost_per_student(van_num, st_count):
+#     van_cost_per_student = van_num * DARBAST / st_count
+#     return van_cost_per_student + PAZIRAEE_COST + VOROUDI_COST
+
+
+# student_number = int(input("enter how many student's: "))
+# van = calc_van_number(student_number)
+# result = cost_per_student(van, student_number)
+# print("trip cost per student is:", result)

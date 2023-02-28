@@ -8,20 +8,20 @@
 
 # message = ".... you can't register in our team, beacaues ..."
 
-def check_member(name, age):
-    if age < 10:
-        return f"{name}, you can't register in our team, beacause your age is lower than 10."
-    else:
-        h = float(input('enter your height: '))
-        if h < 140:
-            return f"{name}, your height is lower than 140."
+# def check_member(name, age):
+#     if age < 10:
+#         return f"{name}, you can't register in our team, beacause your age is lower than 10."
+#     else:
+#         h = float(input('enter your height: '))
+#         if h < 140:
+#             return f"{name}, your height is lower than 140."
 
 
-n = input('enter your name: ')
-a = int(input('enter your age: '))
+# n = input('enter your name: ')
+# a = int(input('enter your age: '))
 
-message = check_member(n, a)
-print(message)
+# message = check_member(n, a)
+# print(message)
 
 ###################################################
 # exercise 2:
@@ -43,3 +43,10 @@ print(message)
 * *
 *
 '''
+
+
+number = int(input('> '))
+
+while number != 0:
+    print(number % 10)
+    number = number // 10  # number //= 10

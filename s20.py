@@ -98,7 +98,13 @@
 # for i in range(10):
 #     print(i)
 
-i = 0
-while i < 10:
-    print(i)
-    i = i + 1  # i += 1
+# i = 0
+# while i < 10:
+#     print(i)
+#     i = i + 1  # i += 1
+
+
+# numbers = [1,2,3,4,5,6,7]
+
+# for i in range(len(numbers) - 1, -1, -1):
+#     print(numbers[i])

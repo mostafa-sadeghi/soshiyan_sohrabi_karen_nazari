@@ -1,4 +1,6 @@
 import random
+import string
+
 
 NUM_DIGITS = 3
 MAX_GUESSES = 10
@@ -18,10 +20,13 @@ After each guess, We show you One Hint:
 
 '''
 def generate_secret_number():
-    pass
-
-
-
+    digits = string.digits # '0123456789'
+    digits = list(digits) # ['0', '1',......,'9']
+    random.shuffle(digits)
+    number = ''
+    for s in digits[:3]:
+        number += s
+    return number
 
 def getClues(guess, secret_number):
     pass
@@ -63,7 +68,7 @@ secret_number = generate_secret_number()
 number_guesses = 1
 while number_guesses < MAX_GUESSES:
     # گرفتن حدس کاربر   guess
-
+    guess = input('> ') 
     clues = getClues(guess, secret_number)
 
 

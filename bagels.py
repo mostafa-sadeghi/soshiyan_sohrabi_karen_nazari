@@ -1,98 +1,39 @@
 import random
 import string
-
+from colorama import init, Fore, Back, Style
+init()
+# print(Style.NORMAL + Fore.RED + Back.GREEN + "Hello EveryBody",end="")
 
 NUM_DIGITS = 3
-MAX_GUESSES = 10
+MAX_TIMES_To_GUESS = 10
 
 print(f'''Welcome to Bagels Game,
-you must guess a {NUM_DIGITS} digits number and you have {MAX_GUESSES} times to guess it.
-After each guess, We show you One Hint: 
-"Fermi"  means     : (one digit is at the right position), 
-"pico"   means     : (one digit is in the code but on a different position), 
-"bagels" means     : (none of the digits are correct).
+you must guess a {Fore.GREEN + str(NUM_DIGITS) + Style.RESET_ALL} digits number and you have {Fore.RED + str(MAX_TIMES_To_GUESS) + Style.RESET_ALL} times to guess it.
+After each guess, We show you One Hint:
+{Fore.MAGENTA}"Fermi"{Style.RESET_ALL}  means     : (one digit is at the right position),
+{Fore.CYAN}"Pico"{Style.RESET_ALL}   means     : (one digit is in the code but on a different position),
+{Fore.LIGHTRED_EX}"Bagels"{Style.RESET_ALL} means     : (none of the digits are correct).
 ''')
 
 
-#exercise : 
-'''
-تابعی برای تولید اعداد سه رقمی تصادقی با رقم های غیرتکراری
-
-'''
 def generate_secret_number():
-    digits = string.digits # '0123456789'
-    digits = list(digits) # ['0', '1',......,'9']
-    random.shuffle(digits)
-    number = ''
-    for s in digits[:3]:
-        number += s
-    return number
-
-def getClues(guess, secret_number):
-    pass
-'''
-تابعی برای نمایش وضعیت حدس کاربر
+    numbers = list(string.digits)
+    random.shuffle(numbers)
+    random_number = ''
+    for i in range(NUM_DIGITS):
+        random_number = random_number + numbers[i]
+    return random_number
 
 
-مثال فرض کنید عددی که کاربر باید حدس می زده 
-325
-
-اگر بازیکن 
-325 
-را وارد کند 
-برنده میشه
-
-
-اگر 
-
-134
-برنامه عیارت زیر را نمایش می دهد
-['pico']
-
-اگر حدس کاربر
-315 باشد
-['fermi', 'fermi']
-
-
-اگر حدس کاربر 
-351
-['fermi','pico']
-
-
-اگر حدس کاربر 769
-bagels
-'''
+def check_user_guess(guess, secret):
+    if guess == secret:
+        return 'You won'
+    # TODO
 
 
 secret_number = generate_secret_number()
-number_guesses = 1
-while number_guesses < MAX_GUESSES:
-    # گرفتن حدس کاربر   guess
-    guess = input('> ') 
-    clues = getClues(guess, secret_number)
+print("secret numeber generated...")
+user_guess = input(f'Enter {NUM_DIGITS} digits number: ')
+print("user_guess:", user_guess)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# string = 'me and amir and sara are firends.'
-# print(string.count('and'))
-# print(string.split().count("and"))
-# word = ''
-# all_words = []
-# for c in string:
-#     word += c
-#     if c == ' ' or c == '.':
-#         all_words.append(word[:-1])
-#         word = ''
-# print(all_words)
+check_user_guess(user_guess, secret_number)

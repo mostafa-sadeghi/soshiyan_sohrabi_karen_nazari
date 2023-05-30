@@ -28,12 +28,33 @@ def generate_secret_number():
 def check_user_guess(guess, secret):
     if guess == secret:
         return 'You won'
-    # TODO
+    help_fo_user = []
+    for i in range(len(guess)):
+        if guess[i] == secret[i]:
+            help_fo_user.append('Fermi')
+        elif guess[i] in secret:
+            help_fo_user.append('Pico')
+
+    if len(help_fo_user) == 0:
+        return 'Bagels'
+    return help_fo_user
 
 
-secret_number = generate_secret_number()
-print("secret numeber generated...")
-user_guess = input(f'Enter {NUM_DIGITS} digits number: ')
-print("user_guess:", user_guess)
-
-check_user_guess(user_guess, secret_number)
+while True:
+    status = ""
+    secret_number = generate_secret_number()
+    print("secret numeber generated...")
+    # print("secret_number", secret_number)
+    for i in range(MAX_TIMES_To_GUESS):
+        user_guess = input(f'Enter {NUM_DIGITS} digits number: ')
+        print("user_guess:", user_guess)
+        help_user = check_user_guess(user_guess, secret_number)
+        print(help_user)
+        if user_guess == secret_number:
+            status = "win"
+            break
+    if status == "":
+        print("you lose")
+    print("Do you want to continue? (y or n)")
+    if input('> ') == "n":
+        break

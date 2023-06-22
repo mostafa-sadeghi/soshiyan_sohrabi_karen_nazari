@@ -1,10 +1,18 @@
-from turtle import Screen, Turtle
+from turtle import Screen
 import time
-from random import randint
+
+from snake_game_utils import make_turtle, change_food_position
+
 
 snake_body = []
 score = 0
-high_score = 0
+try:
+    f = open("snake_game.txt","r")
+    high_score = int(f.read())
+    # print(high_score)
+    # print(type(high_score))
+except:
+    high_score = 0
 
 
 def go_up():
@@ -42,22 +50,16 @@ def move():
         head.setx(x + 20)
 
 
-def change_food_position():
-    food_x = randint(-240, 240)
-    food_y = randint(-240, 240)
-    food.goto(food_x, food_y)
 
 
-def make_turtle(turtle_shape, turtle_color):
-    my_turtle = Turtle()
-    my_turtle.speed("fastest")
-    my_turtle.shape(turtle_shape)
-    my_turtle.color(turtle_color)
-    my_turtle.penup()
-    return my_turtle
+
 
 
 def reset():
+    global score
+    f = open("snake_game.txt", "w")
+    f.write(str(score))
+    score = 0
     head.goto(0, 0)
     head.direction = ""
     for body in snake_body:
@@ -79,13 +81,11 @@ head.direction = ""
 
 food = make_turtle("circle", "red")
 
-change_food_position()
+change_food_position(food)
 
 score_pen = make_turtle("square", "white")
 score_pen.goto(0, 260)
 score_pen.hideturtle()
-score_pen.write(
-    f"Score : {score}, High Score: {high_score}", align="center", font=38)
 
 
 window.listen()
@@ -97,11 +97,15 @@ window.onkey(go_right, "Right")
 
 while True:
     window.update()
-
+    score_pen.clear()
+    score_pen.write(
+        f"Score : {score}, High Score: {high_score}", align="center",
+        font=("Arial", 22))
     if head.distance(food) < 20:
-        change_food_position()
-        # TODO اضافه کردن امتیاز
-        # score_pen.clear()
+        change_food_position(food)
+        score += 1
+        if score > high_score:
+            high_score = score
 
         new_body = make_turtle("square", "grey")
         snake_body.append(new_body)
@@ -120,6 +124,18 @@ while True:
 
     move()
 
+    for body in snake_body:
+        if body.distance(head) < 20:
+            reset()
 
-    # TODO در صورت برخورد به بدن ببازد
     time.sleep(0.2)
+
+
+# exception Handling    مدیریت کردن استثنائات
+
+# try:
+#     n1 = int(input('> '))
+#     n2 = int(input('> '))
+#     print(n1/n2)
+# except:
+#     print(0)

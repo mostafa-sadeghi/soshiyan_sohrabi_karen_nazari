@@ -65,19 +65,19 @@ x = [1, 2, 3, 4, 5, 9, 9, 9]
 
 # turtle.done()
 
-person1 = {
-    'name': "karen",
-    'age': 14,
-    'blood': 'B'
-}
+# person1 = {
+#     'name': "karen",
+#     'age': 14,
+#     'blood': 'B'
+# }
 
-person2 = {
-    'name': 'soshiyan',
-    'age': 12,
-    'blood': 'A'
-}
+# person2 = {
+#     'name': 'soshiyan',
+#     'age': 12,
+#     'blood': 'A'
+# }
 
-persons = [person1, person2]
+# persons = [person1, person2]
 
 # print(persons[1]['age'])
 # new_name = input("enter a name: ")
@@ -90,14 +90,24 @@ persons = [person1, person2]
 #     'blood':new_blood
 # }
 # persons.append(person3)
-print(persons)
+# print(persons)
 # del persons[0]
 # del persons[0]
 # persons.pop()
 # persons.pop()
 # print(persons)
 
-new_name = input("enter the name: ")
-for person in persons:
-    if new_name == person['name']:
-        print(f"{new_name} has {person['age']} years old")
+# new_name = input("enter the name: ")
+# for person in persons:
+#     if new_name == person['name']:
+#         print(f"{new_name} has {person['age']} years old")
+
+
+total = 0
+
+for i in range(100, 251):
+    if i % 3 == 0:
+        if i % 2 != 0:
+            total += i
+
+print(total)

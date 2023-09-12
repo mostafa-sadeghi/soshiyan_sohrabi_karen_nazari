@@ -26,3 +26,9 @@ class Player(Sprite):
         keys = pygame.key.get_pressed()
         if keys[pygame.K_UP] and self.rect.top > 100:
             self.rect.y -= self.velocity
+        if keys[pygame.K_DOWN] and self.rect.bottom < WINDOW_HEIGHT - 100:
+            self.rect.y += self.velocity
+        if keys[pygame.K_RIGHT] and self.rect.right < WINDOW_WIDTH:
+            self.rect.x += self.velocity
+        if keys[pygame.K_LEFT] and self.rect.left > 0:
+            self.rect.x -= self.velocity

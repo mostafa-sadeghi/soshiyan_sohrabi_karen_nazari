@@ -23,6 +23,7 @@ while running:
     display_surface.fill((0, 0, 0))
     player.draw(display_surface)
     game.draw(display_surface)
+    game.check_collisions()
     monster_group.update()
     monster_group.draw(display_surface)
     player.update()

@@ -20,6 +20,10 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                player.warp()
+
     display_surface.fill((0, 0, 0))
     player.draw(display_surface)
     game.draw(display_surface)

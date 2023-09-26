@@ -1,4 +1,4 @@
-from random import randint
+from random import randint, choice
 import pygame
 
 from config import WINDOW_HEIGHT, WINDOW_WIDTH
@@ -10,6 +10,8 @@ class Game:
         self.score = 0
         self.round_number = 0
         self.font = pygame.font.Font("assets/Abrushow.ttf", 24)
+        self.next_level_sound = pygame.mixer.Sound("assets/next_level.wav")
+
         self.player = player
         self.monster_group = monster_group
         blue_monster = pygame.image.load("assets/blue_monster.png")
@@ -40,16 +42,23 @@ class Game:
             f"Round: {self.round_number}", True, (255, 255, 255))
         round_rect = round_text.get_rect()
         round_rect.topright = (WINDOW_WIDTH, 10)
+        warps_text = self.font.render(
+            f"warps: {self.player.warps}", True, (255, 255, 255))
+        warps_rect = warps_text.get_rect()
+        warps_rect.topright = (WINDOW_WIDTH, 50)
 
         display_surface.blit(score_text, score_rect)
         display_surface.blit(round_text, round_rect)
         display_surface.blit(self.target_monster_image,
                              self.target_monster_rect)
+        display_surface.blit(warps_text,
+                             warps_rect)
         pygame.draw.rect(display_surface, COLORS[self.target_monster_type],
                          (0, 100, WINDOW_WIDTH, WINDOW_HEIGHT - 200), 5)
 
     def start_new_round(self):
         self.round_number += 1
+        self.player.warps += 1
         for i in range(self.round_number):
             self.monster_group.add(
                 Monster
@@ -74,14 +83,23 @@ class Game:
                         self.target_monster_images[3], 3
                         )
             )
+        self.next_level_sound.play()
 
     def check_collisions(self):
         collided_monster = pygame.sprite.spritecollideany(
             self.player, self.monster_group)
         if collided_monster:
-            print("collides", collided_monster.type)
-            # TODO"""
-            # در صورت برخورد بازیکن به مانستر صحیح صدای مناسبی پلی شود و نیز امتیاز داده شود
+            if collided_monster.type == self.target_monster_type:
+                self.score += 1
+                self.player.catch_sound.play()
+                collided_monster.remove(self.monster_group)
+                if self.monster_group:
+                    self.choose_new_target()
+                # TODO level completion test and go to next leve
+                # TODO decrease player lives if the player touches wrong monster
+                # TODO add game over
 
-            # در غیر اینصورت از جان بازیکن کم شود و صدای دیگری اجرا شود
-            # """
+    def choose_new_target(self):
+        target_monster = choice(self.monster_group.sprites())
+        self.target_monster_type = target_monster.type
+        self.target_monster_image = target_monster.image

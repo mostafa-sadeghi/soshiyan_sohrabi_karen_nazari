@@ -12,6 +12,7 @@ class Player(Sprite):
         self.rect.bottom = SCREEN_HEIGHT
         self.rect.centerx = SCREEN_WIDTH/2
         self.bullet_group = bullet_group
+        self.lives = 3
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)

@@ -56,11 +56,51 @@ def draw_text():
     level_text = font.render(f'Level {level_number}', True, (255,10,220))
     level_rect = level_text.get_rect(topright = (SCREEN_WIDTH, 0))
     main_screen.blit(level_text, level_rect)
+    lives_text = font.render(f'lives {my_player.lives}', True, (255,10,220))
+    lives_rect = lives_text.get_rect(topleft = (10, 0))
+    main_screen.blit(lives_text, lives_rect)
+
+def pause_game():
+    global running
+    gameover_text = font.render(f'Game Over Press any key to play again...', True, (255,10,220))
+    gameover_rect = gameover_text.get_rect(center = (SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
+    main_screen.blit(gameover_text, gameover_rect)
+    pygame.display.update()
+    paused = True
+    while paused:
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:
+                    paused = False
+                    reset_game()                  
+                if event.key == pygame.K_ESCAPE:
+                    paused = False
+                    running = False
+
+def reset_game():
+    """This function is used for reseting the game
+    """
+    global score, level_number
+    my_player.lives = 3
+    score = 0
+    level_number = 0
+    enemy_group.empty()
+    enemy_bullet_group.empty()
+    player_bullet_group.empty()
+    start_new_level()
 
 def check_collisions():
     global score, level_number, winning_status, winning_time
     if pygame.sprite.groupcollide(player_bullet_group, enemy_group, True, True):
         score += 1
+
+    if pygame.sprite.spritecollide(my_player, enemy_bullet_group, True):
+        my_player.lives -= 1
+    
+    if my_player.lives <=0:
+        pause_game()
+
+
     if len(enemy_group) == 0:
         if not winning_status:
             winning_time = pygame.time.get_ticks()
@@ -79,6 +119,14 @@ def check_collisions():
         
 
 start_new_level()
+
+start_time = pygame.time.get_ticks()
+
+welcome_text = font.render(f'welcome To space game', True, (255,10,220))
+welcome_rect = welcome_text.get_rect(center = (SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
+
+
+
 clock = pygame.time.Clock()
 running = True
 while running:
@@ -91,16 +139,19 @@ while running:
             if event.key == pygame.K_SPACE:
                 my_player.fire()
     main_screen.fill((0, 0, 0))
-    check_collisions()
-    shift_enemies()
-    draw_text()
-    my_player.move()
-    my_player.draw(main_screen)
-    player_bullet_group.update()
-    player_bullet_group.draw(main_screen)
-    enemy_bullet_group.update()
-    enemy_bullet_group.draw(main_screen)
-    enemy_group.update()
-    enemy_group.draw(main_screen)
+    if pygame.time.get_ticks() - start_time < 3000:
+        main_screen.blit(welcome_text, welcome_rect)
+    else:
+        check_collisions()
+        shift_enemies()
+        draw_text()
+        my_player.move()
+        my_player.draw(main_screen)
+        player_bullet_group.update()
+        player_bullet_group.draw(main_screen)
+        enemy_bullet_group.update()
+        enemy_bullet_group.draw(main_screen)
+        enemy_group.update()
+        enemy_group.draw(main_screen)
     pygame.display.update()
     clock.tick(FPS)
